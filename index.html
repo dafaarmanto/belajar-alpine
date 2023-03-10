@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine 101</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <div x-data="{ nama: 'Dafa Armanto' }">
+      <div x-data="{ umur: 22 }">
+        <p>Nama: <span x-text="nama"></span></p>
+        <p>Umur: <span x-text="umur"></span></p>
+      </div>
+    </div>
+
+    <div x-data>
+      <ul>
+        <template x-for="nm in $store.nama.nama">
+          <li x-text="nm"></li>
+        </template>
+      </ul>
+    </div>
+
+    <div
+      class="container mx-auto w-1/2 text-center mt-10 bg-lime-200 p-10 rounded-xl shadow"
+      x-data="{ nama: 'Dafa Armanto' }"
+    >
+      <h1
+        class="text-5xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm"
+      >
+        Halo, <span x-text="nama"></span>
+      </h1>
+    </div>
+
+    <button x-data="{ label: 'Klik disini' }" x-text="label"></button>
+    <button x-data @click="alert('Tombol telah di klik!')">Klik saya</button>
+
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.store("nama", {
+          tahun: 2023,
+          nama: ["Dafa", "Alim", "Shufi"],
+        });
+      });
+    </script>
+  </body>
+</html>
